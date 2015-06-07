@@ -4,7 +4,7 @@ module Tasty
       authenticate!
     end
 
-    resource :items do
+    resource :item do
       desc 'get single menu item'
       params do
         requires :id, type: String, desc: 'menu item id'
@@ -19,18 +19,6 @@ module Tasty
 
         # get item
         menu.menu_items.find(params[:id])
-      end
-
-      desc 'get all menu items by menu'
-      params do
-        requires :id, type: String, desc: 'menu id'
-      end
-      get '/all' do
-        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
-
-        not_found('Menu not found') if restaurant.nil?
-
-        restaurant.menus.find(params[:id]).menu_items
       end
 
       desc 'create a menu item'
@@ -76,6 +64,20 @@ module Tasty
 
         # return item
         item
+      end
+    end
+
+    resource :items do
+      desc 'get all menu items by menu'
+      params do
+        requires :id, type: String, desc: 'menu id'
+      end
+      get do
+        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
+
+        not_found('Menu not found') if restaurant.nil?
+
+        restaurant.menus.find(params[:id]).menu_items
       end
     end
   end

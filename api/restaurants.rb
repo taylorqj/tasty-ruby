@@ -1,14 +1,10 @@
 module Tasty
   class Restaurants < Grape::API
-
-    get 'test' do
-      { test: 'ok' }
+    before do
+      authenticate!
     end
-    # before do
-    #   authenticate!
-    # end
 
-    resource :restaurants do
+    resource :restaurant do
       desc 'create a restaurant'
       params do
         requires :name, type: String, desc: 'Restaurant name'
@@ -24,15 +20,6 @@ module Tasty
           city: params[:city],
           state: params[:state],
           country: params[:country])
-      end
-
-      desc 'find by location'
-      params do
-        requires :radius, type: Float, desc: 'Radius'
-        requires :address, type: String, desc: 'Address'
-      end
-      get '/location' do
-        Restaurant.near(params[:address], params[:radius])
       end
 
       desc 'update a restaurant'
@@ -80,6 +67,17 @@ module Tasty
         not_found('Restaurant not found') if restaurant.nil?
 
         restaurant
+      end
+    end
+
+    resource :restaurants do
+      desc 'find by location'
+      params do
+        requires :radius, type: Float, desc: 'Radius'
+        requires :address, type: String, desc: 'Address'
+      end
+      get '/location' do
+        Restaurant.near(params[:address], params[:radius])
       end
     end
   end

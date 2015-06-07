@@ -4,19 +4,7 @@ module Tasty
       authenticate!
     end
 
-    resource :menus do
-      desc 'get all menus of a restaurant'
-      params do
-        requires :id, type: String, desc: 'Restaurant id'
-      end
-      get '/all' do
-        restaurant = Restaurant.find(params[:id])
-
-        not_found('Restaurant not found') if restaurant.nil?
-
-        restaurant.menus.all
-      end
-
+    resource :menu do
       desc 'get menu of a restaurant'
       params do
         requires :id, type: String, desc: 'Menu id'
@@ -66,6 +54,20 @@ module Tasty
 
         # return menu
         menu
+      end
+    end
+
+    resource :menus do
+      desc 'get all menus of a restaurant'
+      params do
+        requires :id, type: String, desc: 'Restaurant id'
+      end
+      get do
+        restaurant = Restaurant.find(params[:id])
+
+        not_found('Restaurant not found') if restaurant.nil?
+
+        restaurant.menus.all
       end
     end
   end
