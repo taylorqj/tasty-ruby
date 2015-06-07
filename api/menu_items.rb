@@ -10,12 +10,12 @@ module Tasty
         requires :id, type: String, desc: 'menu item id'
       end
       get do
-        restaurant = Restaurant.where('menus.menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus.menu_items._id' => id_parse(params[:id])).first
 
         not_found('Menu item not found') if restaurant.nil?
 
         # get menu where item is located
-        menu = restaurant.menus.where('menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        menu = restaurant.menus.where('menu_items._id' => id_parse(params[:id])).first
 
         # get item
         menu.menu_items.find(params[:id])
@@ -28,7 +28,7 @@ module Tasty
         requires :id, type: String, desc: 'menu id'
       end
       post do
-        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus._id' => id_parse(params[:id])).first
 
         not_found('Menu not found') if restaurant.nil?
 
@@ -49,12 +49,12 @@ module Tasty
         requires :description, type: String, desc: 'description'
       end
       put do
-        restaurant = Restaurant.where('menus.menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus.menu_items._id' => id_parse(params[:id])).first
 
         not_found('Menu item not found') if restaurant.nil?
 
         # get the menu the item is located in
-        menu = restaurant.menus.where('menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        menu = restaurant.menus.where('menu_items._id' => id_parse(params[:id])).first
 
         # get the item
         item = menu.menu_items.find(params[:id])
@@ -73,7 +73,7 @@ module Tasty
         requires :id, type: String, desc: 'menu id'
       end
       get do
-        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus._id' => id_parse(params[:id])).first
 
         not_found('Menu not found') if restaurant.nil?
 

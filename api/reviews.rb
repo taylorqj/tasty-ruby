@@ -12,7 +12,7 @@ module Tasty
         requires :id, type: String, desc: 'menu item id'
       end
       post do
-        restaurant = Restaurant.where('menus.menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus.menu_items._id' => id_parse(params[:id])).first
 
         not_found('Menu item not found') if restaurant.nil?
 
@@ -64,12 +64,12 @@ module Tasty
         requires :id, type: String, desc: 'id'
       end
       get do
-        restaurant = Restaurant.where('menus.menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus.menu_items._id' => id_parse(params[:id])).first
 
         not_found('Menu item not found') if restaurant.nil?
 
         # get the menu the item is located in
-        menu = restaurant.menus.where('menu_items._id' => BSON::ObjectId.from_string(params[:id])).first
+        menu = restaurant.menus.where('menu_items._id' => id_parse(params[:id])).first
 
         # get item in the menu
         item = menu.menu_items.find(params[:id])

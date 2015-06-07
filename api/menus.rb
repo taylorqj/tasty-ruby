@@ -10,7 +10,7 @@ module Tasty
         requires :id, type: String, desc: 'Menu id'
       end
       get do
-        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus._id' => id_parse(params[:id])).first
 
         not_found('Menu not found') if restaurant.nil?
 
@@ -39,7 +39,7 @@ module Tasty
         requires :name, type: String, desc: 'Name of menu'
       end
       put do
-        restaurant = Restaurant.where('menus._id' => BSON::ObjectId.from_string(params[:id])).first
+        restaurant = Restaurant.where('menus._id' => id_parse(params[:id])).first
 
         not_found('Restaurant not found') if restaurant.nil?
 

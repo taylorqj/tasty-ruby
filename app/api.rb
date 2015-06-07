@@ -12,6 +12,9 @@ module Tasty
     # Handle typical responses, 404, 401, etc
     helpers ::Tasty::Helpers::ResponseHelpers
 
+    # Mongo helpful functions
+    helpers ::Tasty::Helpers::MongoHelpers
+
     # Handle error formatting of responses
     error_formatter :json, ::Tasty::Helpers::ErrorHelpers
 
