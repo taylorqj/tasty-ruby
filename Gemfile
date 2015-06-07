@@ -10,11 +10,4 @@ gem 'geocoder'
 gem 'airborne'
 gem 'rspec'
 gem 'figaro'
-
-group :development do
-  gem 'rake' # travis ci depends on this
-end
-
-group :test do
-  gem 'rake' # travis ci depends on this
-end
+gem 'rake'
