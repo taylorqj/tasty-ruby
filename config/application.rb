@@ -4,7 +4,7 @@ $:.unshift File.dirname(__FILE__)
 
 require 'boot'
 
-Bundler.require :default, ENV['RACK_ENV']
+Bundler.require :development, ENV['RACK_ENV']
 
 # load figaro environment
 Figaro.application = Figaro::Application.new(environment: ENV['RACK_ENV'], path: "config/application.yml")
