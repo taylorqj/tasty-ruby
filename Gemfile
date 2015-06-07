@@ -1,11 +1,13 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rack'
 gem 'rack-cors'
 gem 'grape'
-gem 'mongoid', require: true
+gem 'mongoid', '4.0.2'
 gem 'bson_ext'
 gem 'bcrypt'
 gem 'geocoder'
+gem 'airborne'
+gem 'rspec'
 
 # gem 'sidekiq'

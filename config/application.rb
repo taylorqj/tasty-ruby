@@ -1,7 +1,9 @@
 $:.unshift File.join(File.dirname(__FILE__), '..', 'api')
 $:.unshift File.join(File.dirname(__FILE__), '..', 'app')
+$:.unshift File.dirname(__FILE__)
 
-require 'bundler'
+require 'boot'
+
 Bundler.require :default, ENV['RACK_ENV']
 
 # require and load mongo
