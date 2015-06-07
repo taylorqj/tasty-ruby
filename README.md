@@ -1,3 +1,7 @@
 # tasty
 
-rackup config.ru
+Ruby on Grape API
+
+## Start API
+
+rackup config.ru -E development
