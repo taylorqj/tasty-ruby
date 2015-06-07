@@ -11,4 +11,6 @@ gem 'airborne'
 gem 'rspec'
 gem 'figaro'
 
-# gem 'sidekiq'
+group :test do
+  gem 'rake' # travis ci depends on this
+end
