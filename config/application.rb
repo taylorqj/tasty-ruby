@@ -10,10 +10,6 @@ Bundler.require :default, ENV['RACK_ENV']
 Figaro.application = Figaro::Application.new(environment: ENV['RACK_ENV'], path: "config/application.yml")
 Figaro.load
 
-ENV.each do |key, value|
-  puts key
-end
-
 # require and load mongo
 require 'mongoid'
 Mongoid.load!('config/mongoid.yml', ENV['RACK_ENV'])

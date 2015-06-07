@@ -1,5 +1,5 @@
 mongo_host: localhost:27017
-mongo_db: 'tasty_development'
+mongo_db: tasty_development
 
 production:
   mongo_host: ds043942.mongolab.com:43942

@@ -90,9 +90,9 @@ development:
 test:
   sessions:
     default:
-      database: tasty_test
+      database: <%= ENV['MONGO_DB'] %>
       hosts:
-        - localhost:27017
+        - <%= ENV['MONGO_HOST'] %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
@@ -102,11 +102,11 @@ test:
 production:
   sessions:
     default:
-      database: heroku_app37588175
+      database: <%= ENV['MONGO_DB'] %>
       hosts:
-        - ds043942.mongolab.com:43942
-      username: admin
-      password: 10q6w71e
+        - <%= ENV['MONGO_HOST'] %>
+      username: <%= ENV['MONGO_USER'] %>
+      password: <%= ENV['MONGO_PASSWORD'] %>
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
