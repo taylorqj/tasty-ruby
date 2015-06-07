@@ -9,5 +9,6 @@ gem 'bcrypt'
 gem 'geocoder'
 gem 'airborne'
 gem 'rspec'
+gem 'figaro'
 
 # gem 'sidekiq'
