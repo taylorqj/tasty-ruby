@@ -1,1 +1,2 @@
-env.development
+# Ignore application configuration
+/config/application.yml
