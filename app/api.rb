@@ -21,6 +21,5 @@ module Tasty
     mount ::Tasty::Restaurants
     mount ::Tasty::Reviews
     mount ::Tasty::Users
-    # add_swagger_documentation api_version: 'v1'
   end
 end
