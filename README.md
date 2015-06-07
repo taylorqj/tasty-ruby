@@ -4,9 +4,7 @@
 
 Ruby on Grape API
 
-## getting started
-
-Set environment
+## Getting started
 
 Set your environments MongoDB settings here.
 
@@ -27,5 +25,4 @@ development:
   test_key: 12AJSGDHASD6ASD5FA7842KDSK
 
 ```
-
-rackup config.ru -E whatever-environment
+`$ rackup config.ru -E whatever-environment`
