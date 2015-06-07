@@ -1,0 +1,3 @@
+# tasty
+
+rackup config.ru
