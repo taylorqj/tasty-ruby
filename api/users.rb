@@ -1,12 +1,7 @@
 module Tasty
   class Users < Grape::API
-    resource :users do
-      desc 'returns all users'
-      get '/all' do
-        authenticate!
-        sanitize_many(User.all)
-      end
-
+    # single user
+    resource :user do
       desc 'returns single user'
       params do
         requires :id, type: String, desc: 'User Id'
@@ -82,6 +77,18 @@ module Tasty
         else
           not_found('Unable to unfollow user.')
         end
+      end
+    end
+
+    # many users
+    resource :users do
+      before do
+        authenticate!
+      end
+
+      desc 'returns all users'
+      get do
+        { users: sanitize_many(User.all) }
       end
     end
   end

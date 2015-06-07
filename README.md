@@ -4,6 +4,28 @@
 
 Ruby on Grape API
 
-## Start API
+## getting started
 
-rackup config.ru -E development
+Set environment
+
+Set your environments MongoDB settings here.
+
+create `config/application.yml`
+```ruby
+mongo_host: localhost
+mongo_db: tasty_development
+test_key: 12AJSGDHASD6ASD5FA7842KDSK
+
+test:
+  mongo_host: localhost:27017
+  mongo_db: tasty_test
+  test_key: 12AJSGDHASD6ASD5FA7842KDSK
+
+development:
+  mongo_host: localhost:27017
+  mongo_db: tasty_development
+  test_key: 12AJSGDHASD6ASD5FA7842KDSK
+
+```
+
+rackup config.ru -E whatever-environment
