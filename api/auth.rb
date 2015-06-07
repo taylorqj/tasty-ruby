@@ -1,6 +1,7 @@
 module Tasty
   class Auth < Grape::API
     resource :auth do
+      
       desc 'Authenticates and logs in a user'
       params do
         requires :email, type: String, desc: 'Email address'
