@@ -5,11 +5,11 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: tasty_development
+      database: <%= ENV['MONGO_DB'] %>
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
+        - <%= ENV['MONGO_HOST'] %>
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:
@@ -105,6 +105,8 @@ production:
       database: heroku_app37588175
       hosts:
         - ds043942.mongolab.com:43942
+      username: admin
+      password: 10q6w71e
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to
